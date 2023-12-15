@@ -1,4 +1,7 @@
 const mongoose = require('mongoose');
+
+
+
 mongoose.connect('mongodb://localhost:27017/rick_and_morty', {
   useNewUrlParser: true,
   useUnifiedTopology: true
@@ -11,10 +14,10 @@ const newSchema = new Schema({
   campo2: Number
 });
 
-const characters = mongoose.model('character', newSchema);
+const characters = mongoose.model('characters', newSchema);
 
 // Crear un nuevo documento
-const nuevoDocumento = new characters({ campo1: 'valor1', campo2: 42 });
+const nuevoDocumento = new characters({ campo1: 'alien', campo2: 42 });
 
 // Guardar el documento en la base de datos
 nuevoDocumento.save()
@@ -22,7 +25,7 @@ nuevoDocumento.save()
     console.log('Documento guardado');
 
     // Consultar el documento recién creado
-    return characters.find({ campo1: 'valor1' });
+    return characters.find({ campo1: 'alien' });
   })
   .then((documentos) => {
     console.log('Documentos encontrados:', documentos);
@@ -36,3 +39,5 @@ nuevoDocumento.save()
     // Cerrar la conexión a la base de datos en caso de error
     mongoose.connection.close();
   });
+
+  module.exports = {characters}

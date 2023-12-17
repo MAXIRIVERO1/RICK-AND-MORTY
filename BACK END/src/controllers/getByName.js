@@ -9,7 +9,7 @@ const getByName = async (name) => {
       useUnifiedTopology: true
     });
 
-    const dbResult = await characters.find({ campo1: name });
+    const dbResult = await characters.find({ name: name });
 
     
     var combinedResults = [];

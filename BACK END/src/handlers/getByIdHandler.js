@@ -6,6 +6,7 @@ const getByIdHandler = async(req, res) => {
     try {
         const {id} = req.params
         const result = await getById(id)
+        console.log(result)
         res.status(200).json(result)
         
     } catch (error) {

@@ -12,7 +12,7 @@ const SearchBar = () => {
 
   const handleSearch = async () => {
     try {
-      const response = await axios.get(`http://localhost:3001/rickAndMorty/${query}`);
+      const response = await axios.get(`http://localhost:3001/rickAndMorty/name/${query}`);
       setResults(response.data);
     } catch (error) {
       console.error('Error al realizar la búsqueda:', error);

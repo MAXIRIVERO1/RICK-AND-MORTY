@@ -1,10 +1,13 @@
 import React from 'react'
+import { Link } from 'react-router-dom';
 
-function Card({image, title}) {
+
+function Card(character) {
+  const {image, title, id} = character
   return (
     <div>
         <img src={image} alt={title} /><br />
-        <h6>{title}</h6>
+        <Link to={`/detail/${id}`}><h6>{title}</h6></Link>
     </div>
   )
 }

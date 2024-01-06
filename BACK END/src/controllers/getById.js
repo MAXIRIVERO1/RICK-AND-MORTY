@@ -1,41 +1,41 @@
-const {characters} = require("../db.js")
+const { characters } = require("../db.js");
 const mongoose = require('mongoose');
 const axios = require("axios");
 
+const getById = async (id) => {
+  try {
+    await mongoose.connect('mongodb://localhost:27017/rick_and_morty', {
+      useNewUrlParser: true,
+      useUnifiedTopology: true
+    });
 
-
-
-const getById = async(id) => {
     try {
-        await mongoose.connect('mongodb://localhost:27017/rick_and_morty', {
-            useNewUrlParser: true,
-            useUnifiedTopology: true
-        });
-        
-        var result = [];
+      const { data } = await axios(`https://rickandmortyapi.com/api/character/${id}`);
+      console.log("ESTE ES EL RESULTADO DE AXIOS", data);
 
-        const found = await characters.findById(id);
-        console.log("este es found!", found)
-
-        if (found) {
-            return found;
-        }
-
-        const { data } = await axios(`https://rickandmortyapi.com/api/character/${id}`);
-        
-        if (data){
-            return data
-        }
-
-        
-        console.log("este es el rsultado de la busqueda por id",data)
-        
-        return result;
-    } catch (error) {
-        console.log(error)
-    } finally {
-        mongoose.connection.close();
+      if (data) {
+        return data; 
+      }
+    } catch (axiosError) {
+      console.error("Error en la búsqueda de Axios:", axiosError);
     }
-}
 
-module.exports = {getById}
+    
+    
+    const found = await characters.findById(id);
+    console.log("Este es found:", found);
+
+    if (found) {
+      return found;
+    }
+
+    return null;
+
+  } catch (error) {
+    console.error("Error en la función getById:", error);
+  } finally {
+    mongoose.connection.close();
+  }
+};
+
+module.exports = { getById };

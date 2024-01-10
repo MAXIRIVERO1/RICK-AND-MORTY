@@ -1,23 +1,20 @@
 import React, { useState } from 'react';
-import axios from 'axios';
 import Cards from '../Cards/Cards.jsx';
+import { useDispatch, useSelector } from "react-redux";
+import { onSearch } from '../../Redux/Actions/actions.js';
 
 const SearchBar = () => {
   const [query, setQuery] = useState('');
-  const [results, setResults] = useState([]);
+  const results = useSelector((state) => state.results);
+  const dispatch = useDispatch();
 
   const handleInputChange = (e) => {
     setQuery(e.target.value);
   };
 
-  const handleSearch = async () => {
-    try {
-      const response = await axios.get(`http://localhost:3001/rickAndMorty/name/${query}`);
-      setResults(response.data);
-    } catch (error) {
-      console.error('Error al realizar la búsqueda:', error);
-    }
-  };
+  const handleSearch = () => {
+    dispatch(onSearch(query));
+  }
 
   const handleKeyPress = (e) => {
     if (e.key === 'Enter') {
@@ -27,11 +24,10 @@ const SearchBar = () => {
 
   return (
     <div>
-      <input type="text" value={query} onChange={handleInputChange} onKeyDown={handleKeyPress}/>
+      <input type="text" value={query} onChange={handleInputChange} onKeyDown={handleKeyPress} />
       <button onClick={handleSearch}>Buscar</button>
 
-      { results.length === 0 ? <h1>BUSCA UN PERSONAJE EN LA SEACRH BAR</h1> : <Cards characters={results}/>}
-      {console.log(results)}
+      {results.length === 0 ? <h1>BUSCA UN PERSONAJE EN LA SEARCH BAR</h1> : <Cards characters={results} />}
     </div>
   );
 };

@@ -1,23 +1,16 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
-import axios from 'axios';
+import { useSelector, useDispatch } from "react-redux"
+import {getDetail, clearDetail} from "../../Redux/Actions/actions"
 
 function Detail() {
   const { id } = useParams();
-  const [character, setCharacter] = useState({});
+  const character = useSelector((state)=>state.detail)
+  const dispatch = useDispatch()
 
   useEffect(() => {
-    const fetchCharacter = async () => {
-      try {
-        const {data} = await axios.get(`http://localhost:3001/rickAndMorty/by/${id}`);
-
-        setCharacter(data);
-      } catch (error) {
-        console.error('Error fetching character:', error);
-      }
-    };
-
-    fetchCharacter();
+    dispatch(getDetail(id))
+    return clearDetail()
   }, [id]);
 
   if (!character) {

@@ -5,14 +5,15 @@ import {getDetail, clearDetail} from "../../Redux/Actions/actions"
 
 function Detail() {
   const { id } = useParams();
+  console.log("ESTE ES EL ID!!", id)
   const character = useSelector((state)=>state.detail)
   const dispatch = useDispatch()
 
   useEffect(() => {
     dispatch(getDetail(id))
-    return clearDetail()
+    return () => {dispatch(clearDetail())}
   }, [id]);
-
+console.log("ESTE ESTA CARGADO", character)
   if (!character) {
     return <div>Loading...</div>;
   }
@@ -24,7 +25,7 @@ function Detail() {
       <img src={image} alt={name} />
       <h2>{name}</h2>
       <p>Gender: {gender}</p>
-      <p>Origin: {origin?.name}</p>
+      <p>Origin: {origin?.name || origin}</p>
       <p>Species: {species}</p>
       <p>Status: {status}</p>
 
@@ -33,4 +34,5 @@ function Detail() {
 }
 
 export default Detail;
+
 

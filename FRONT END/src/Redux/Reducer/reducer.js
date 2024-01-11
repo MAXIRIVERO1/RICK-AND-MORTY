@@ -13,6 +13,7 @@ const reducer = (state=initialState, action)=>{
                 ...state, results: action.payload
             }
         case GET_DETAIL : 
+        
             return {
                 ...state, detail: action.payload
             }
@@ -26,3 +27,6 @@ const reducer = (state=initialState, action)=>{
 }
 
 export default reducer;
+
+
+  

@@ -5,12 +5,13 @@ function Cards({characters}) {
   return (
     <div>
         {characters.map((char, index)=>{
-            const {id, name, image} = char
+            const {_id, id, name, image} = char
+            const characterId = _id || id
             return (
                 <Card
                 key={index}
-                id={id}
-                title={name}
+                id={characterId}
+                name={name}
                 image={image}
                 />
             )

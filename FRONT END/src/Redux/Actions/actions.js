@@ -11,6 +11,7 @@ export const onSearch = (query) => {
     return async (dispatch) => {
         try {
           const {data} = await axios.get(`http://localhost:3001/rickAndMorty/name/${query}`);
+          console.log("este es la data por name", data)
           return dispatch({
             type: GET_BY_NAME,
             payload: data
@@ -24,9 +25,11 @@ export const onSearch = (query) => {
 
   export const getDetail = (id) => {
     return async (dispatch) => {
-        try {
-          const {data} = await axios.get(`http://localhost:3001/rickAndMorty/by/${id}`);
-          return dispatch({
+      try {
+        const {data} = await axios.get(`http://localhost:3001/rickAndMorty/by/${id}`);
+        console.log("EL ID LLEGA A LAS ACTIONS??", id)
+        console.log('Respuesta de la petición GET_DETAIL:', data);
+          return await dispatch({
             type: GET_DETAIL,
             payload: data
           })  
@@ -39,12 +42,14 @@ export const onSearch = (query) => {
   export const clearDetail = () => {
     return async (dispatch) => {
         try {
-            return dispatch({
+            await dispatch({
                 type: CLEAR_DETAIL,
                 payload: {}
-            })
+            });
+
+            console.log('Detail cleared successfully.');
         } catch (error) {
-            
+            console.error('Error clearing detail:', error);
         }
     }
-  }
+}

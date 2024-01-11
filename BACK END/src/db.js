@@ -1,14 +1,12 @@
 const mongoose = require('mongoose');
 
-
-
 mongoose.connect('mongodb://localhost:27017/rick_and_morty', {
   useNewUrlParser: true,
   useUnifiedTopology: true
 });
 
-const Schema = mongoose.Schema;
 
+const Schema = mongoose.Schema;
 const newSchema = new Schema({
   name: String,
   status: String,
@@ -18,8 +16,8 @@ const newSchema = new Schema({
   image: String
 });
 
+
 const characters = mongoose.model('characters', newSchema);
 
-mongoose.connection.close();
+module.exports = { characters };
 
-module.exports = {characters}

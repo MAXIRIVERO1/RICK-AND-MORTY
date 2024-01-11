@@ -3,11 +3,13 @@ import { Link } from 'react-router-dom';
 
 
 function Card(character) {
-  const {image, title, id} = character
+  const {image, name, _id, id} = character
+  const characterId = _id || id
+  console.log(character)
   return (
     <div>
-        <img src={image} alt={title} /><br />
-        <Link to={`/detail/${id}`}><h6>{title}</h6></Link>
+        <img src={image} alt={name} /><br />
+        <Link to={`/detail/${characterId}`}><h6>{name}</h6></Link>
     </div>
   )
 }

@@ -5,6 +5,7 @@ import SearchBar from './components/SearchBar/SearchBar.jsx';
 import Cards from './components/Cards/Cards.jsx';
 import Detail from './components/Detail/Detail.jsx';
 import Form from './components/Form/Form.jsx';
+import FormPut from './components/FormPut/FormPut.jsx';
 
 function App() {
   
@@ -13,6 +14,7 @@ function App() {
     <div>
       <Routes>
         <Route path="/" element={<Home />} />
+        <Route path="/edit/:id" element={<FormPut />} />
         <Route path="/create" element={<Form />} />
         <Route path="/search" element={<SearchBar />} />
         <Route path="/cards" element={<Cards />} />

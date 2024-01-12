@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import Cards from '../Cards/Cards.jsx';
 import { useDispatch, useSelector } from "react-redux";
 import { onSearch } from '../../Redux/Actions/actions.js';
+import axios from 'axios';
 
 const SearchBar = () => {
   const [query, setQuery] = useState('');
@@ -22,8 +23,16 @@ const SearchBar = () => {
     }
   };
 
+  const handleRandom = async() => {
+    const {data} = await axios.get("http://localhost:3001/rickAndMorty/random")
+    console.log("ESTE ES RANDOM", data)
+    const {name} = data
+    dispatch(onSearch(name));
+  }
+
   return (
     <div>
+      <button onClick={handleRandom}>Random</button>
       <input type="text" value={query} onChange={handleInputChange} onKeyDown={handleKeyPress} />
       <button onClick={handleSearch}>Buscar</button>
 

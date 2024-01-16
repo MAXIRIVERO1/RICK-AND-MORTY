@@ -1,9 +1,10 @@
-import { GET_BY_NAME, GET_DETAIL, CLEAR_DETAIL } from "../Actions/actions"
+import { GET_BY_NAME, GET_DETAIL, CLEAR_DETAIL, GET_FAVORITES } from "../Actions/actions"
 
 
 const initialState = {
     results : [],
-    detail : {}
+    detail : {},
+    favorites: []
 }
 
 const reducer = (state=initialState, action)=>{
@@ -20,6 +21,10 @@ const reducer = (state=initialState, action)=>{
         case CLEAR_DETAIL : 
             return {
                 ...state, detail: action.payload
+            }
+        case GET_FAVORITES :
+            return {
+                ...state, favorites: action.payload
             }
         default:
             return state;

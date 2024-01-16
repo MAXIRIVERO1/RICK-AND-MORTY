@@ -4,6 +4,7 @@ import { useSelector, useDispatch } from "react-redux"
 import {getDetail, clearDetail} from "../../Redux/Actions/actions"
 import axios from 'axios';
 import Swal from 'sweetalert2';
+import NavigationBar from '../NavigationBar/NavigationBar';
 
 function Detail() {
   const { id } = useParams();
@@ -40,6 +41,7 @@ console.log("ESTE ESTA CARGADO", character)
 
   return (
     <div>
+      <NavigationBar></NavigationBar>
       {id && id.toString().length > 3 ? <button onClick={()=>handleEdit(id)}>Edit</button> : null}
       {id && id.toString().length > 3 ? <button onClick={()=>handleDelete(id)}>Delete</button> : null}
       <img src={image} alt={name} />

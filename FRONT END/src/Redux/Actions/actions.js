@@ -2,7 +2,10 @@ import axios from "axios";
 export const GET_BY_NAME = "GET_BY_NAME"
 export const GET_DETAIL = "GET_DETAIL"
 export const CLEAR_DETAIL = "CLEAR_DETAIL"
-export const GET_FAVORITES = "GET_FAVORITES"
+export const MAKE_FAVORITE = "MAKE_FAVORITE"
+export const DELETE_FAVORITE = "DELETE_FAVORITE"
+export const ORDER_ASC = "ORDER_ASC"
+export const ORDER_DES = "ORDER_DES"
 
 
 
@@ -24,23 +27,23 @@ export const onSearch = (query) => {
     }
   };
 
-  export const getDetail = (id) => {
+export const getDetail = (id) => {
     return async (dispatch) => {
-      try {
-        const {data} = await axios.get(`http://localhost:3001/rickAndMorty/by/${id}`);
-        console.log("EL ID LLEGA A LAS ACTIONS??", id)
-        console.log('Respuesta de la petición GET_DETAIL:', data);
-          return await dispatch({
-            type: GET_DETAIL,
-            payload: data
-          })  
-        } catch (error) {
-          console.error('Error fetching character:', error);
+        try {
+            const {data} = await axios.get(`http://localhost:3001/rickAndMorty/by/${id}`);
+            console.log("EL ID LLEGA A LAS ACTIONS??", id)
+            console.log('Respuesta de la petición GET_DETAIL:', data);
+            return await dispatch({
+                type: GET_DETAIL,
+                payload: data
+            })  
+            } catch (error) {
+            console.error('Error fetching character:', error);
         }
-      };
-  }
+    };
+}
 
-  export const clearDetail = () => {
+export const clearDetail = () => {
     return async (dispatch) => {
         try {
             await dispatch({
@@ -52,5 +55,42 @@ export const onSearch = (query) => {
         } catch (error) {
             console.error('Error clearing detail:', error);
         }
+    }
+}
+
+export const makeFavorite = (id) => {
+    return async (dispatch) => {
+        try {
+            const {data} = await axios.get(`http://localhost:3001/rickAndMorty/by/${id}`);
+            console.log("EL ID LLEGA A LAS ACTIONS??", id)
+            console.log('Respuesta de la petición MAKE_FAVORITE:', data);
+            return await dispatch({
+                type: MAKE_FAVORITE,
+                payload: data
+            })  
+            } catch (error) {
+            console.error('Error fetching character:', error);
+        }
+    };
+}
+
+export const deleteFavorite = (id) => {
+    return {
+        type: DELETE_FAVORITE,
+        payload: { id }
+    };
+}
+
+export const orderASC = () => {
+    return {
+        type: ORDER_ASC,
+        payload: ""
+    }
+}
+
+export const orderDES = () => {
+    return {
+        type: ORDER_DES,
+        payload: ""
     }
 }

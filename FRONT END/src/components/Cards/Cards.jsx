@@ -5,7 +5,7 @@ function Cards({characters}) {
   return (
     <div>
         {characters.map((char, index)=>{
-            const {_id, id, name, image} = char
+            const {_id, id, name, image, gender} = char
             const characterId = _id || id
             return (
                 <Card
@@ -13,6 +13,7 @@ function Cards({characters}) {
                 id={characterId}
                 name={name}
                 image={image}
+                gender={gender}
                 />
             )
         })}

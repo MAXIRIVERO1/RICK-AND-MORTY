@@ -6,6 +6,7 @@ export const MAKE_FAVORITE = "MAKE_FAVORITE"
 export const DELETE_FAVORITE = "DELETE_FAVORITE"
 export const ORDER_ASC = "ORDER_ASC"
 export const ORDER_DES = "ORDER_DES"
+export const FILTER_BY_GENDER = "FILTER_BY_GENDER"
 
 
 
@@ -92,5 +93,12 @@ export const orderDES = () => {
     return {
         type: ORDER_DES,
         payload: ""
+    }
+}
+
+export const filterByGender = (gender) => {
+    return {
+        type: FILTER_BY_GENDER,
+        payload: gender
     }
 }

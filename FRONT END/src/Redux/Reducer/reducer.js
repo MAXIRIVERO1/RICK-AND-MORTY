@@ -1,10 +1,11 @@
-import { GET_BY_NAME, GET_DETAIL, CLEAR_DETAIL, MAKE_FAVORITE, DELETE_FAVORITE, ORDER_ASC, ORDER_DES } from "../Actions/actions"
+import { GET_BY_NAME, GET_DETAIL, CLEAR_DETAIL, MAKE_FAVORITE, DELETE_FAVORITE, ORDER_ASC, ORDER_DES, FILTER_BY_GENDER } from "../Actions/actions"
 
 
 const initialState = {
     results : [],
     detail : {},
-    favorites: []
+    favorites: [],
+    copyFavorites: []
 }
 
 const reducer = (state=initialState, action)=>{
@@ -24,11 +25,12 @@ const reducer = (state=initialState, action)=>{
             }
         case MAKE_FAVORITE :
             return {
-                ...state, favorites: [...state.favorites, action.payload]
+                ...state, favorites: [...state.favorites, action.payload], copyFavorites: [...state.copyFavorites, action.payload]
             }
         case DELETE_FAVORITE :
+            const deleted = state.favorites.filter(obj => obj.id !== action.payload.id)
             return {
-                ...state, favorites: state.favorites.filter(obj => obj.id !== action.payload.id)
+                ...state, favorites: deleted, copyFavorites: deleted 
             }
         case ORDER_ASC :
             return {
@@ -38,7 +40,25 @@ const reducer = (state=initialState, action)=>{
             return {
                 ...state, favorites: [...state.favorites.slice().sort((a, b) => b.name.localeCompare(a.name))]
             }
-        default:
+        case FILTER_BY_GENDER:
+            const originalFavorites = state.copyFavorites
+            let filtered = []
+            if(action.payload === ""){
+                filtered = originalFavorites
+            }else{
+                filtered = originalFavorites.filter(obj => obj.gender === action.payload)
+                console.log("copyFavorites:", state.copyFavorites, "favorites:", state.favorites)
+                if(filtered.length < 1){
+                    return {
+                        ...state, copyFavorites: state.copyFavorites, favorites: [],
+                    }
+                }
+            }
+            return {
+                ...state, copyFavorites: state.copyFavorites, favorites: filtered,
+                
+            }
+            default:
             return state;
     }
 }

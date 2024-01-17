@@ -2,23 +2,35 @@ import React from 'react'
 import NavigationBar from '../NavigationBar/NavigationBar'
 import { useSelector, useDispatch } from "react-redux"
 import Cards from '../Cards/Cards'
-import {orderASC, orderDES} from "../../Redux/Actions/actions.js"
+import {orderASC, orderDES, filterByGender} from "../../Redux/Actions/actions.js"
 
 
 function Favorites() {
     const favorites = useSelector((state)=>state.favorites)
     const dispatch = useDispatch()
+
     const handleOrderASC = () => {
         dispatch(orderASC())
     }
     const handleOrderDES = () => {
         dispatch(orderDES())
     }
+    const handleGender = (e) => {
+        const gender = e.target.value
+        dispatch(filterByGender(gender))
+    }
     return (
         <div>
             <NavigationBar></NavigationBar>
             <button onClick={handleOrderASC}>Order by Name ASC</button>
             <button onClick={handleOrderDES}>Order by Name DES</button>
+            <select name="Filter by Gender" id="gender" onChange={handleGender}>
+                <option value="">All genders</option>
+                <option value="Female">Female</option>
+                <option value="Male">Male</option>
+                <option value="Genderless">Genderless</option>
+                <option value="unknown">Unknown</option>
+            </select>
             {favorites.length === 0 ? <h1>There is not favorites</h1> : <Cards characters={favorites} /> }
         </div>
     )

@@ -1,28 +1,28 @@
 import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
+import logo from "../../logoR&M.png"
+import style from "./navigationBar.module.css"
 
 function NavigationBar() {
     const { pathname } = useLocation();
 
     return (
-        <nav>
-        <ul>
+        <div className={style.content}>
+            <img className={style.img} src={logo} alt="logo" />
+                <Link to="/create">
+                <button>Create</button>
+                </Link>
             {pathname !== "/favorites" ? (
-            <li>
                 <Link to="/favorites">
                 <button>Favorites</button>
                 </Link>
-            </li>
             ) : null}
             {pathname !== "/" ? (
-            <li>
                 <Link to="/">
                 <button>Home</button>
                 </Link>
-            </li>
             ) : null}
-        </ul>
-        </nav>
+        </div>
     );
 }
 

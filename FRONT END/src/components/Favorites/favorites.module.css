@@ -1,0 +1,31 @@
+@import url('https://fonts.googleapis.com/css2?family=Patrick+Hand&display=swap');
+.button {
+    font-family: 'Patrick Hand', cursive, sans-serif;
+    font-size: 20px;
+    width: 250px;
+    height: 50px;
+    border-radius: 10px;
+    border-style: none;
+    background-color: rgba(7, 7, 7, 0.434);
+    color: aqua;
+    margin: 5px;
+    padding: 5px;
+    cursor: pointer;
+}
+.button:hover {
+    transform: scale(1.1);
+}
+
+select {
+    font-family: 'Patrick Hand', cursive, sans-serif;
+    background-color: rgba(7, 7, 7, 0.434);
+    font-size: 20px;
+    width: 150px;
+    height: 50px;
+    border-radius: 10px;
+    border-style: none;
+    color: aqua;
+    margin: 5px;
+    padding: 5px;
+    cursor: pointer;
+}

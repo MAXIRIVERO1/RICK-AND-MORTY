@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from "react-redux";
 import { deleteFavorite, makeFavorite } from "../../Redux/Actions/actions.js";
+import style from "./card.module.css"
 
 function Card(character) {
     const [isFav, setIsFav] = useState(false);
@@ -30,17 +31,17 @@ function Card(character) {
     const characterId = _id || id;
 
     return (
-        <div>
+        <div className={style.card}>
         <img src={image} alt={name} /><br />
         {
             isFav ? (
-            <button onClick={() => { handleFavorite(characterId) }}>❤️</button>
+            <button onClick={() => { handleFavorite(characterId) }} className={style.button}>❤️</button>
             ) :
             (
-            <button onClick={() => { handleFavorite(characterId) }}>🤍</button>
+            <button onClick={() => { handleFavorite(characterId) }} className={style.button}>🤍</button>
             )
         }
-        <Link to={`/detail/${id}`}><h6>{name}</h6></Link>
+        <Link className={style.link} to={`/detail/${id}`}><h3>{name}</h3></Link>
         <p>Gender: {gender}</p>
         </div>
     );

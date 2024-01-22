@@ -1,0 +1,31 @@
+.card {
+    background-color: rgba(0, 255, 255, 0.197);
+    padding: 15px 10px 15px 10px;
+    margin: 10px 10px 10px 10px;
+    border-radius: 10px;
+    width: auto;
+}
+.card:hover {
+    transform: scale(1.2);
+}
+img {
+    width: 50%;
+    height: 50%;
+    border-radius: 10px;
+}
+.link {
+    text-decoration: none;
+    color: rgb(127, 232, 255);
+}
+.button {
+    background: none;
+    border: none;
+    font-size: 25px;
+    cursor: pointer;
+}
+.button:hover {
+    transform: scale(1.2);
+}
+p {
+    color: rgb(0, 170, 255);
+}

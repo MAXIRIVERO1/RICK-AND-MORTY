@@ -1,0 +1,22 @@
+.content {
+    background-color: rgba(0, 255, 255, 0.395);
+    display: flex;
+    align-items: center;
+    padding: 15px;
+    margin-bottom: 5px;
+}
+
+.img {
+    width: 150px;
+    height: 40px;
+    margin-right: auto;
+}
+
+button {
+    margin: 0 10px;
+}
+
+button:first-child {
+    margin-left: auto;
+}
+

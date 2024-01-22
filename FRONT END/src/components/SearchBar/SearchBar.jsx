@@ -3,6 +3,7 @@ import Cards from '../Cards/Cards.jsx';
 import { useDispatch, useSelector } from "react-redux";
 import { onSearch } from '../../Redux/Actions/actions.js';
 import axios from 'axios';
+import style from "./searchBar.module.css"
 
 const SearchBar = () => {
     const [query, setQuery] = useState('');
@@ -15,6 +16,7 @@ const SearchBar = () => {
 
     const handleSearch = () => {
         dispatch(onSearch(query));
+        setQuery("")
     }
 
     const handleKeyPress = (e) => {

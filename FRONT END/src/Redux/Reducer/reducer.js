@@ -1,4 +1,4 @@
-import { GET_BY_NAME, GET_DETAIL, CLEAR_DETAIL, MAKE_FAVORITE, DELETE_FAVORITE, ORDER_ASC, ORDER_DES, FILTER_BY_GENDER } from "../Actions/actions"
+import { GET_BY_NAME, GET_DETAIL, CLEAR_DETAIL, MAKE_FAVORITE, DELETE_FAVORITE, ORDER_ASC, ORDER_DES, FILTER_BY_GENDER, DELETE_RESULT } from "../Actions/actions"
 
 
 const initialState = {
@@ -28,7 +28,8 @@ const reducer = (state=initialState, action)=>{
                 ...state, favorites: [...state.favorites, action.payload], copyFavorites: [...state.copyFavorites, action.payload]
             }
         case DELETE_FAVORITE :
-            const deleted = state.favorites.filter(obj => obj.id !== action.payload.id)
+            const deleted = state.favorites.filter((obj) => obj.id !== action.payload && obj._id !== action.payload)
+            console.log("ESTOS SON LOS QUE QUEDAN DESPUES DE ELIMINAR: ", deleted)
             return {
                 ...state, favorites: deleted, copyFavorites: deleted 
             }
@@ -57,6 +58,11 @@ const reducer = (state=initialState, action)=>{
             return {
                 ...state, copyFavorites: state.copyFavorites, favorites: filtered,
                 
+            }
+        case DELETE_RESULT:
+            const del = state.results.filter((obj) => obj.id || obj._id !== action.payload)
+            return {
+                ...state, results: del
             }
             default:
             return state;

@@ -1,0 +1,15 @@
+.div {
+    color: aqua;
+}
+
+form {
+    background-color: rgba(0, 0, 0, 0.401);
+    margin: 50px 400px 10px 400px;
+    padding: 15px 0 15px 0;
+}
+
+input {
+    width: 300px;
+    height: 30px;
+    margin: 10px 0 10px 0;
+}

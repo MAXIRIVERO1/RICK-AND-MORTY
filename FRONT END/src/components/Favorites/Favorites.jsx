@@ -32,7 +32,7 @@ function Favorites() {
                 <option value="Genderless">Genderless</option>
                 <option value="unknown">Unknown</option>
             </select>
-            {favorites.length === 0 ? <h1>There is not favorites</h1> : <Cards characters={favorites} /> }
+            {favorites.length === 0 || null ? <div className={style.div}><h1>There is not favorites</h1></div> : <Cards characters={favorites} /> }
         </div>
     )
 }

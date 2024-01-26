@@ -26,19 +26,18 @@ function Card(character) {
         }
     };
 
-    const { image, name, id, _id, gender } = character;
-    console.log("este es el character de la card:", character)
-    const characterId = _id || id;
+    const { image, name, id, gender } = character;
+    console.log("este es el character de la card:", id)
 
     return (
         <div className={style.card}>
         <img src={image} alt={name} /><br />
         {
             isFav ? (
-            <button onClick={() => { handleFavorite(characterId) }} className={style.button}>❤️</button>
+            <button onClick={() => { handleFavorite(id) }} className={style.button}>❤️</button>
             ) :
             (
-            <button onClick={() => { handleFavorite(characterId) }} className={style.button}>🤍</button>
+            <button onClick={() => { handleFavorite(id) }} className={style.button}>🤍</button>
             )
         }
         <Link className={style.link} to={`/detail/${id}`}><h3>{name}</h3></Link>

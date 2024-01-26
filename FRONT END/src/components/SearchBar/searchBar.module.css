@@ -1,6 +1,9 @@
 @import url('https://fonts.googleapis.com/css2?family=Patrick+Hand&display=swap');
-h1 {
-    color: aqua
+.div {
+    background-color: rgba(0, 0, 0, 0.416);
+    margin: 0 430px 0 430px;
+    border-radius: 10px;
+    color: aqua;
 }
 input {
     font-family: 'Patrick Hand', cursive, sans-serif;

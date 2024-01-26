@@ -3,7 +3,8 @@ import Cards from '../Cards/Cards.jsx';
 import { useDispatch, useSelector } from "react-redux";
 import { onSearch } from '../../Redux/Actions/actions.js';
 import axios from 'axios';
-import style from "./searchBar.module.css"
+import Swal from 'sweetalert2';
+import style from "./searchBar.module.css";
 
 const SearchBar = () => {
     const [query, setQuery] = useState('');
@@ -14,9 +15,17 @@ const SearchBar = () => {
         setQuery(e.target.value);
     };
 
-    const handleSearch = () => {
-        dispatch(onSearch(query));
-        setQuery("")
+    const handleSearch = async() => {
+        const action = await dispatch(onSearch(query));
+        const found = action.payload;
+        setQuery("");
+        if(found.length === 0){
+        Swal.fire({
+            title: "Error",
+            text: "Character not found",
+            icon: "info",
+            confirmButtonText: "OK"
+        })};
     }
 
     const handleKeyPress = (e) => {
@@ -38,7 +47,7 @@ const SearchBar = () => {
         <input type="text" value={query} onChange={handleInputChange} onKeyDown={handleKeyPress} />
         <button onClick={handleSearch}>Buscar</button>
 
-        {results.length === 0 ? <h1>BUSCA UN PERSONAJE EN LA SEARCH BAR</h1> : <Cards characters={results} />}
+        {results.length === 0 ? <div className={style.div}><h1>BUSCA UN PERSONAJE EN LA SEARCH BAR</h1></div> : <Cards characters={results} />}
         </div>
     );
 };

@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import Swal from 'sweetalert2';
 import {useNavigate} from 'react-router-dom';
+import NavigationBar from "../NavigationBar/NavigationBar.jsx"
+import style from "./form.module.css"
 
 function Form() {
     const navigate = useNavigate()
@@ -49,30 +51,31 @@ function Form() {
     };
 
     return (
-        <div>
+        <div className={style.div}>
+        <NavigationBar></NavigationBar>
         <form onSubmit={handleSubmit}>
-        <label htmlFor="name">Name:</label>
-        <input type="text" id="name" name="name" value={formData.name} onChange={handleChange} required />
+        <label htmlFor="name">Name:</label><br />
+        <input type="text" id="name" name="name" value={formData.name} onChange={handleChange} required /><br />
 
-        <label htmlFor="status">Status:</label>
-        <input type="text" id="status" name="status" value={formData.status} onChange={handleChange} required />
+        <label htmlFor="status">Status:</label><br />
+        <input type="text" id="status" name="status" value={formData.status} onChange={handleChange} required /><br />
 
-        <label htmlFor="species">Species:</label>
-        <input type="text" id="species" name="species" value={formData.species} onChange={handleChange} required />
+        <label htmlFor="species">Species:</label><br />
+        <input type="text" id="species" name="species" value={formData.species} onChange={handleChange} required /><br />
 
-        <label htmlFor="gender">Gender:</label>
-        <select id="gender" name="gender" value={formData.gender} onChange={handleChange} required>
+        <label htmlFor="gender">Gender:</label><br />
+        <select id="gender" name="gender" value={formData.gender} onChange={handleChange} required><br />
             <option value="Female">Female</option>
             <option value="Male">Male</option>
             <option value="Genderless">Genderless</option>
             <option value="unknown">Unknown</option>
-        </select>
+        </select><br />
 
-        <label htmlFor="origin">Origin:</label>
-        <input type="text" id="origin" name="origin" value={formData.origin} onChange={handleChange} required />
+        <label htmlFor="origin">Origin:</label><br />
+        <input type="text" id="origin" name="origin" value={formData.origin} onChange={handleChange} required /><br />
 
-        <label htmlFor="image">Image URL:</label>
-        <input type="text" id="image" name="image" value={formData.image} onChange={handleChange} required />
+        <label htmlFor="image">Image URL:</label><br />
+        <input type="text" id="image" name="image" value={formData.image} onChange={handleChange} required /><br />
 
         <button type="submit">Enviar</button>
         </form>

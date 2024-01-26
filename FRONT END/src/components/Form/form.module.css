@@ -13,3 +13,10 @@ input {
     height: 30px;
     margin: 10px 0 10px 0;
 }
+
+.divH1 {
+    background-color: rgba(0, 0, 0, 0.416);
+    margin: 300px 430px 0 430px;
+    border-radius: 10px;
+    color: aqua;
+}

@@ -33,7 +33,7 @@ function Detail() {
       icon: 'info',
       confirmButtonText: 'OK',
     });
-    navigate("/")
+    navigate("/home")
     }
 
     const handleEdit = async(id) => {

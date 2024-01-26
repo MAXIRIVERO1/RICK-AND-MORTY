@@ -11,6 +11,13 @@ h1 {
     color: aqua;
 }
 
+.divH1 {
+    background-color: rgba(0, 0, 0, 0.416);
+    margin: 300px 430px 0 430px;
+    border-radius: 10px;
+    color: aqua;
+}
+
 .button {
     font-family: 'Patrick Hand', cursive, sans-serif;
     font-size: 20px;

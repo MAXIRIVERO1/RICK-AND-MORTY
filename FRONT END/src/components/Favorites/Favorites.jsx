@@ -8,6 +8,7 @@ import style from "./favorites.module.css"
 
 function Favorites() {
     const favorites = useSelector((state)=>state.favorites)
+    const access = useSelector((state) => state.access)
     const dispatch = useDispatch()
 
     const handleOrderASC = () => {
@@ -22,6 +23,7 @@ function Favorites() {
     }
     return (
         <div>
+            { access ? <div>
             <NavigationBar></NavigationBar>
             <button className={style.button} onClick={handleOrderASC}>Order by Name ASC</button>
             <button className={style.button} onClick={handleOrderDES}>Order by Name DES</button>
@@ -33,6 +35,7 @@ function Favorites() {
                 <option value="unknown">Unknown</option>
             </select>
             {favorites.length === 0 || null ? <div className={style.div}><h1>There is not favorites</h1></div> : <Cards characters={favorites} /> }
+            </div> : <h1 className={style.divH1}>You must log in</h1>}
         </div>
     )
 }

@@ -8,6 +8,7 @@ import Form from './components/Form/Form.jsx';
 import FormPut from './components/FormPut/FormPut.jsx';
 import NavigationBar from './components/NavigationBar/NavigationBar.jsx';
 import Favorites from './components/Favorites/Favorites.jsx';
+import Login from './components/Login/Login.jsx';
 
 function App() {
   
@@ -15,7 +16,8 @@ function App() {
   return (
     <div>
       <Routes>
-        <Route path="/" element={<Home />} />
+        <Route path="/" element={<Login />} />
+        <Route path="/home" element={<Home />} />
         <Route path="/favorites" element={<Favorites />} />
         <Route path="/navigation" element={<NavigationBar />} />
         <Route path="/edit/:id" element={<FormPut />} />

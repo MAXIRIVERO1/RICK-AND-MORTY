@@ -1,11 +1,12 @@
-import { GET_BY_NAME, GET_DETAIL, CLEAR_DETAIL, MAKE_FAVORITE, DELETE_FAVORITE, ORDER_ASC, ORDER_DES, FILTER_BY_GENDER, DELETE_RESULT } from "../Actions/actions"
+import { GET_BY_NAME, GET_DETAIL, CLEAR_DETAIL, MAKE_FAVORITE, DELETE_FAVORITE, ORDER_ASC, ORDER_DES, FILTER_BY_GENDER, DELETE_RESULT, GET_ACCESS } from "../Actions/actions"
 
 
 const initialState = {
     results : [],
     detail : {},
     favorites: [],
-    copyFavorites: []
+    copyFavorites: [],
+    access: false
 }
 
 const reducer = (state=initialState, action)=>{
@@ -63,6 +64,10 @@ const reducer = (state=initialState, action)=>{
             const del = state.results.filter((obj) => obj.id || obj._id !== action.payload)
             return {
                 ...state, results: del
+            }
+        case GET_ACCESS:
+            return {
+                ...state, access: action.payload
             }
             default:
             return state;

@@ -8,6 +8,7 @@ export const ORDER_ASC = "ORDER_ASC"
 export const ORDER_DES = "ORDER_DES"
 export const FILTER_BY_GENDER = "FILTER_BY_GENDER"
 export const DELETE_RESULT = "DELETE_RESULT"
+export const GET_ACCESS = "GET_ACCESS"
 
 
 
@@ -109,5 +110,14 @@ export const deleteResults = (id) => {
     return {
         type: DELETE_RESULT,
         payload: id
+    }
+};
+
+export const getAccess = (boolean) => {
+    return (dispatch) => {
+        dispatch({
+            type: GET_ACCESS,
+            payload: boolean
+        })
     }
 };

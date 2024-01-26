@@ -3,10 +3,12 @@ import axios from 'axios';
 import Swal from 'sweetalert2';
 import {useNavigate} from 'react-router-dom';
 import NavigationBar from "../NavigationBar/NavigationBar.jsx"
-import style from "./form.module.css"
+import style from "./form.module.css";
+import { useSelector } from 'react-redux';
 
 function Form() {
     const navigate = useNavigate()
+    const access = useSelector((state) => state.access)
     const [formData, setFormData] = useState({
         name: '',
         status: '',
@@ -51,6 +53,8 @@ function Form() {
     };
 
     return (
+        <div>
+        { access ? 
         <div className={style.div}>
         <NavigationBar></NavigationBar>
         <form onSubmit={handleSubmit}>
@@ -79,6 +83,8 @@ function Form() {
 
         <button type="submit">Enviar</button>
         </form>
+        </div> : 
+        <h1 className={style.divH1}>You must log in</h1> }
         </div>
     );
 }

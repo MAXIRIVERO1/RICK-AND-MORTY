@@ -2,9 +2,15 @@ import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import logo from "../../logoR&M.png"
 import style from "./navigationBar.module.css"
+import { useDispatch } from 'react-redux';
+import { getAccess } from "../../Redux/Actions/actions.js"
 
 function NavigationBar() {
     const { pathname } = useLocation();
+    const dispatch = useDispatch()
+    const handleLog = () => {
+        dispatch(getAccess(false))
+    };
 
     return (
         <div className={style.content}>
@@ -17,9 +23,14 @@ function NavigationBar() {
                 <button>Favorites</button>
                 </Link>
             ) : null}
+            {pathname !== "/home" ? (
+                <Link to="/home">
+                <button>Home</button>
+                </Link>
+            ) : null}
             {pathname !== "/" ? (
                 <Link to="/">
-                <button>Home</button>
+                <button onClick={handleLog}>Logout</button>
                 </Link>
             ) : null}
         </div>

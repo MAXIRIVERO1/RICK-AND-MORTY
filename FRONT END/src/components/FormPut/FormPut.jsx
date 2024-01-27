@@ -4,9 +4,12 @@ import Swal from 'sweetalert2';
 import { useParams, useNavigate} from 'react-router-dom';
 import NavigationBar from '../NavigationBar/NavigationBar.jsx';
 import style from "./formPut.module.css";
+import { useDispatch } from 'react-redux';
+import { deleteResults } from '../../Redux/Actions/actions.js';
 
 function FormPut() {
     const {id} = useParams()
+    const dispatch = useDispatch()
     const navigate = useNavigate()
     const [character, setCharacter] = useState({})
     const [formData, setFormData] = useState({
@@ -66,6 +69,7 @@ function FormPut() {
             image: ''
         })
         navigate(`/detail/${id}`)
+        dispatch(deleteResults(id))
         } catch (error) {
         console.error('Error al realizar la petición POST:', error);
         }
